@@ -41,18 +41,32 @@ const api = {
         // Configurar uma nova solicitação com atraso
         this.searchTimeout = setTimeout(() => {
             response_api(text).done((data) => {
+
                 self.number = data.id;
                 call_pokemon(text);
+
             }).fail((failing) => {
                 if (failing.status == 404) {
+
                     let not_exist = $(`
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <div id="fail" class="alert alert-warning alert-dismissible fade show" role="alert">
                             O pokémon mencionado não existe :/
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     `);
+
                     // Adicionando alerta de not found no topo na carta de apresentação com 'prepend()'
                     $('.card-body:eq(0)').prepend(not_exist);
+
+                    setTimeout(() => {
+                        
+
+                        $("#fail").fadeOut(500, function(){
+                            $(this).remove();
+                        });
+
+                    }, 2000);
+
                 } else {
                     console.error(failing);
                     throw failing;
@@ -146,4 +160,3 @@ $(document).ready(() => {
 call_pokemon(1);
 
 })
-
