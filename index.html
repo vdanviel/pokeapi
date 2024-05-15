@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ShowPokémon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="utils.js"></script>
+  </head>
+  <body>
+    
+    <section class="d-flex justify-content-center align-items-center flex-column w-100 my-5">
+        
+        <div id="presenting" class="mb-5">
+
+            <div class="d-flex flex-column align-items-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="pokemon-logo">
+                <a href="https://github.com/vdanviel" class="text-decoration-none text-dark">feito por <svg height="24px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path class="st0" d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/></svg> vdanviel</a>
+
+                <div class="grid gap-4 mt-2">
+
+                    <img width="24" src="https://camo.githubusercontent.com/f57aea3228bb09e8900c43a5fc350cd31b4157af37cdd78394d20e38361a8889/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f6a71756572792f6a71756572792d6f726967696e616c2e737667" alt="jquery">
+                    <img width="24" src="https://camo.githubusercontent.com/ebf2af85cf293d6bc084e4ebe2b7b39d226519475a973c3b3a2908458d95818c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e406c61746573742f69636f6e732f626f6f7473747261702f626f6f7473747261702d6f726967696e616c2e737667" alt="bootstrap">
+                    <img width="24" src="https://camo.githubusercontent.com/3d0ddeed2c709ed1cbce62a9c624d0f719d5ed695567a2eef03d61a70c7ff336/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f6a6176617363726970742f6a6176617363726970742d706c61696e2e737667" alt="javascript">
+
+                </div>
+
+            </div>
+            
+    
+        </div>
+    
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center flex-row">
+
+              <!-- Card 1: Exibição do Pokémon -->
+              <div id="showing-card" class="col-6 text-center">
+                <div class="card">
+                  <div style="height: 450px;" class="card-body d-flex flex-column align-items-center justify-content-center">
+                    <img id="display" src="https://static.thenounproject.com/png/2222628-200.png" class="mb-4" width="100" height="100" alt="pokemon">
+                    <div class="input-group flex-nowrap mb-4">
+                      <span class="input-group-text" id="addon-wrapping">
+                        <img width="15" src="https://cdn0.iconfinder.com/data/icons/pokemon-go-vol-2/135/_Pokeball-256.png" alt="_Pokeball-256">
+                      </span>
+                      <input oninput="api.search_pokemon(this.value)" type="text" class="form-control" placeholder="Nome do Pokémon" aria-label="Nome do Pokémon" aria-describedby="addon-wrapping">
+                    </div>
+                    <h5 id="name" class="card-title">card-name</h5>
+                    <p id="info" class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <div>
+                      <button class="btn btn-secondary btn-sm" onclick="api.prev_pokemon()">Anterior</button>
+                      <button class="btn btn-primary btn-lg show-info" onclick="api.about_pokemon()">Sobre</button>
+                      <button class="btn btn-secondary btn-sm" onclick="api.next_pokemon()">Próximo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Card 2: Informações do Pokémon -->
+              <div id="info-card" class="col-6 text-center d-none">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Sobre o Pokémon</h5>
+                    <p id="exp" class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          
+                    <div class="container text-center">
+                      <div id="stats" class="row row-cols-3 row-cols-lg-4 g-2 g-lg-3 justify-content-center my-3">
+
+                        <div class="col border rounded m-1 p-3">
+                            <img width="30" src="https://cdn4.iconfinder.com/data/icons/basic-ui-2-line/32/heart-love-like-likes-loved-favorite-256.png" alt="hp">
+                        </div>
+
+                        <div class="col border rounded m-1 p-3">
+                            <img width="30" src="https://cdn0.iconfinder.com/data/icons/neu-game/24/game_sword_weapon_attack_war-256.png" alt="attack">
+                        </div>
+
+                        <div class="col border rounded m-1 p-3">
+                            <img width="30" src="https://cdn4.iconfinder.com/data/icons/user-interface-181/32/Shield-256.png" alt="defense">
+                        </div>
+
+                      </div>
+                    </div>
+          
+                    <ul id="abis" class="list-group list-group-flush">
+                      <li id="presenting_abilis" class="list-group-item list-group-item-action list-group-item"></li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>          
+
+    </section>    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
