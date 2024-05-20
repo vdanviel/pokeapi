@@ -1,9 +1,4 @@
+#iamgem base
 FROM httpd:latest
 
 COPY . /usr/local/apache2/htdocs/
-
-# Copiar a configuração customizada
-COPY httpd.conf /usr/local/apache2/conf/httpd.conf
-
-#EXPOSE - indica a porta do conteiner
-EXPOSE 8091
